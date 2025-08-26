@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <!-- <link rel="stylesheet" href="{% static 'style.css' %}"> -->
+    <style>
+        * {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: red;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .ct {
+            padding: 30px;
+        }
+
+        .container .ct h1 {
+            color: white;
+        }
+
+        .image-box { 
+            margin: 30px;
+            display: inline-flex;
+            flex-wrap: wrap;
+            flex: 2;
+        }
+
+        .image-box .img {
+            margin: 20px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="ct">
+                <h1>Pinterest</h1>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="image-box">
+            {% for image in images %}
+                <a href="{% url 'image_detail' image.pk %}"><img class="img" src="{{ image.image.url }}" alt="image not found" width="200" height="300" style="object-fit: cover;"></a>
+            {% empty %}
+                <!-- <p>No images</p> -->
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
