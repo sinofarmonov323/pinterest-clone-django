@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     'main',
 ]
 
@@ -130,5 +129,3 @@ MEDIA_URL = '/images/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
