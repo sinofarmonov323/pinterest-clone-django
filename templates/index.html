@@ -104,8 +104,12 @@
     </header>
     <main>
         <div class="image-box">
-            {% for image in images %}
-                <a href="{% url 'image_detail' image.pk %}"><img class="img" src="{{ image.image.url }}" alt="image not found" width="200" height="300" style="object-fit: cover;"></a>
+            {% for media in images %}
+                {% if media.is_image %}
+                    <a href="{% url 'image_detail' media.pk %}"><img class="img" src="{{ media.file.url }}" alt="image not found" width="200" height="300" style="object-fit: cover;"></a>
+                {% elif media.is_video %}
+                    <a href="{% url 'image_detail' media.pk %}"><video class="img" alt="video not found" width="200" height="300" style="object-fit: cover;" controls loop autoplay muted><source src="{{ media.file.url }}" type="video/mp4"></video></a>
+                {% endif %}
             {% empty %}
                 <!-- <p>No images</p> -->
             {% endfor %}

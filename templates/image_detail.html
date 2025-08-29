@@ -45,7 +45,11 @@
 </head>
 <body>
     <div class="pinterest-card">
-        <img src="{{ image.image.url }}" alt="{{ image.title }}">
+        {% if image.is_image %}
+            <img src="{{ image.file.url }}" alt="{{ image.title }}">
+        {% elif image.is_video %}
+            <video src="{{ image.file.url }}" controls></video>
+        {% endif %}
         <h1>{{ image.title }}</h1>
     </div>
 </body>
